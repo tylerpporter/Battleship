@@ -31,7 +31,24 @@ class Cell
     @fired_upon
   end
 
-  def render(argument)
-    #Work on render method tomorrow
+  def render(ship = false)
+
+    if fired_upon? == false && @has_ship == false
+      return "."
+    end
+    if fired_upon? && @has_ship == false
+      return "M"
+    end
+    if fired_upon? && @has_ship == true && @ship.health != 0
+      return "H"
+    elsif fired_upon? && @has_ship == true &&           @ship.sunk?
+      return "X"
+    end
+    if ship == true && @has_ship == true
+      return "S"
+
+    end
+
+
   end
 end
