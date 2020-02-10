@@ -19,9 +19,19 @@ attr_reader :computer_board,
       @computer_ships = [computer_ship1, computer_ship2]
       @player_ships = [player_ship1, player_ship2]
     end
+  end
 
-    def place_computer_ships
-
+  def place_computer_ships
+    @computer_ships.each do |ship|
+      coordinates = []
+      loop do
+        coordinates = []
+        (ship.length).times do
+          coordinates << @computer_board.cells.keys.sample
+        end
+        break if @computer_board.valid_placement?(ship, coordinates)
+      end
+      @computer_board.place(ship, coordinates)
     end
   end
 
