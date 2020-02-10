@@ -14,4 +14,5 @@ class MenuTest < Minitest::Test
     assert_equal "p", Menu.new.user_decision
   end
 
+
 end

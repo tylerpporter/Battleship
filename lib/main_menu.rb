@@ -11,6 +11,8 @@ class Menu
       puts "Your garbage sanyways."
     elsif @user_decision == "p"
       puts "Great, lets begin!"
+    elsif @user_decision != "p" || @user_decision != "q"
+      puts "Invalid Answer, try again."
     end
   end
 
