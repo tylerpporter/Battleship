@@ -103,7 +103,7 @@ class Game
             print "\r#{ ' ' * msg.size }"
             sleep 0.3
           end
-          puts "#{computer_shot} was a Miss!".green
+          puts "Computer's shot #{computer_shot} was a Miss!".green
 
         elsif !@setup.player_board.cells[computer_shot].ship.nil? &&
           !@setup.player_board.cells[computer_shot].ship.sunk?
@@ -115,7 +115,7 @@ class Game
             print "\r#{ ' ' * msg.size }"
             sleep 0.3
           end
-          puts "#{computer_shot} was a hit!".red
+          puts "Computer's shot #{computer_shot} was a hit!".red
 
         elsif !@setup.player_board.cells[computer_shot].ship.nil? &&
           @setup.player_board.cells[computer_shot].ship.sunk?
