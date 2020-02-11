@@ -8,8 +8,7 @@ attr_reader :computer_board,
             :computer_ships,
             :player_ships
 
-  def initialize(user_decision)
-    if user_decision == "p"
+  def initialize
       @computer_board = Board.new
       @player_board = Board.new
       computer_ship1 = Ship.new("Submarine", 2)
@@ -18,7 +17,6 @@ attr_reader :computer_board,
       player_ship2 = Ship.new("Cruiser", 3)
       @computer_ships = [computer_ship1, computer_ship2]
       @player_ships = [player_ship1, player_ship2]
-    end
   end
 
   def place_computer_ships
