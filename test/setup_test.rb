@@ -19,9 +19,18 @@ end
   end
 
   def test_it_can_place_computer_ships
-    
+
     @setup.place_computer_ships
     any_ships =  @setup.computer_board.cells.values.any? do |cell|
+      cell.ship != nil
+    end
+    assert any_ships
+  end
+
+  def test_if_player_has_placed_ships
+
+    @setup.place_player_ships
+    any_ships =  @setup.player_board.cells.values.any? do |cell|
       cell.ship != nil
     end
     assert any_ships

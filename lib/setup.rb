@@ -35,4 +35,17 @@ attr_reader :computer_board,
     end
   end
 
+  def place_player_ships
+    puts "I have laid out my ships on the grid."
+    puts "-" * 30
+    puts "You now need to lay out your two ships."
+    puts "-" * 30
+    puts "The Cruiser is three units long and the Submarine is two units long."
+    puts "=" * 30
+    puts @player_board.render(true)
+    puts "=" * 30
+    puts "Enter the squares for the Cruiser (3 spaces, example: A1 A2 A3):"
+    player_coordinates = gets.chomp.upcase.split(' ')
+  end
+
 end

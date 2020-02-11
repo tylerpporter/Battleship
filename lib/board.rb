@@ -64,6 +64,6 @@ attr_reader :cells
     key_grid = @cells.keys.group_by { |key| key[0]}.values
     render_grid = key_grid.map { |row| row.map {|key| @cells[key].render(ship)}}
     render_string = render_grid.map { |arr| arr.join(" ") + " \n"  }
-    rendered_board = string_columns + rows.zip(render_string).flatten.join
+    string_columns + rows.zip(render_string).flatten.join
   end
 end
