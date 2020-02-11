@@ -1,5 +1,6 @@
 require './lib/main_menu.rb'
 require './lib/setup.rb'
+require 'colorize'
 
 class Game
 
@@ -24,6 +25,7 @@ class Game
       loop do
         player_shot = nil
         computer_shot = nil
+        puts "=" * 30
         puts "COMPUTER BOARD"
         puts "=" * 30
         puts @setup.computer_board.render
@@ -32,6 +34,7 @@ class Game
         puts "=" * 30
         puts @setup.player_board.render(true)
         puts "=" * 30
+        puts ""
 
         loop do
           puts "Enter Coordinate for your shot!:"
@@ -57,13 +60,39 @@ class Game
         all_computer_shots << computer_shot
 
         if @setup.computer_board.cells[player_shot].ship.nil?
-          puts "Your shot on #{player_shot} was a miss!"
+          msg = "Your shot on #{player_shot} was a miss!".red
+          4.times do
+            print "\r#{ msg }"
+            sleep 0.3
+            print "\r#{ ' ' * msg.size }"
+            sleep 0.3
+          end
+          puts "#{player_shot} was a Miss!".red
+
         elsif !@setup.computer_board.cells[player_shot].ship.nil? &&
           !@setup.computer_board.cells[player_shot].ship.sunk?
-          puts "Your shot on #{player_shot} was a hit!"
+
+          msg = "Your shot on #{player_shot} was a hit!".green
+          4.times do
+            print "\r#{ msg }"
+            sleep 0.3
+            print "\r#{ ' ' * msg.size }"
+            sleep 0.3
+          end
+          puts "#{player_shot} was a hit!".green
+
         elsif !@setup.computer_board.cells[player_shot].ship.nil? &&
           @setup.computer_board.cells[player_shot].ship.sunk?
-          puts "You sunk my battle ship!"
+          sunk_ship = computer_ships.select{|ship| ship.sunk?}
+          msg = "You sunk my battle ship!".yellow
+          4.times do
+            print "\r#{ msg }"
+            sleep 0.3
+            print "\r#{ ' ' * msg.size }"
+            sleep 0.3
+          end
+          puts "The #{sunk_ship[0].name} Sunk!".yellow
+
         end
 
       end
