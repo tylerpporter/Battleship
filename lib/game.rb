@@ -67,7 +67,7 @@ class Game
             print "\r#{ ' ' * msg.size }"
             sleep 0.3
           end
-          puts "#{player_shot} was a Miss!".red
+          puts "Player's shot on #{player_shot} was a Miss!".red
 
         elsif !@setup.computer_board.cells[player_shot].ship.nil? &&
           !@setup.computer_board.cells[player_shot].ship.sunk?
@@ -79,7 +79,7 @@ class Game
             print "\r#{ ' ' * msg.size }"
             sleep 0.3
           end
-          puts "#{player_shot} was a hit!".green
+          puts "Player's shot on #{player_shot} was a hit!".green
 
         elsif !@setup.computer_board.cells[player_shot].ship.nil? &&
           @setup.computer_board.cells[player_shot].ship.sunk?
@@ -91,11 +91,54 @@ class Game
             print "\r#{ ' ' * msg.size }"
             sleep 0.3
           end
-          puts "The #{sunk_ship[0].name} Sunk!".yellow
+          puts "Computer's #{sunk_ship[0].name} Sunk!".yellow
 
         end
 
+        if @setup.player_board.cells[computer_shot].ship.nil?
+          msg = "Computer's shot on #{computer_shot} was a miss!".green
+          4.times do
+            print "\r#{ msg }"
+            sleep 0.3
+            print "\r#{ ' ' * msg.size }"
+            sleep 0.3
+          end
+          puts "#{computer_shot} was a Miss!".green
+
+        elsif !@setup.player_board.cells[computer_shot].ship.nil? &&
+          !@setup.player_board.cells[computer_shot].ship.sunk?
+
+          msg = "Computer's shot on #{computer_shot} was a hit!".red
+          4.times do
+            print "\r#{ msg }"
+            sleep 0.3
+            print "\r#{ ' ' * msg.size }"
+            sleep 0.3
+          end
+          puts "#{computer_shot} was a hit!".red
+
+        elsif !@setup.player_board.cells[computer_shot].ship.nil? &&
+          @setup.player_board.cells[computer_shot].ship.sunk?
+          sunk_ship = player_ships.select{|ship| ship.sunk?}
+          msg = "I sunk your battle ship!".yellow
+          4.times do
+            print "\r#{ msg }"
+            sleep 0.3
+            print "\r#{ ' ' * msg.size }"
+            sleep 0.3
+          end
+          puts "My #{sunk_ship[0].name} sunk!".yellow
+        end
+        break if player_ships.all? {|ship| ship.sunk?} ||
+          computer_ships.all? {|ship| ship.sunk?}
       end
+      if player_ships.all? {|ship| ship.sunk?}
+        puts "You lose!!!"
+      elsif computer_ships.all? {|ship| ship.sunk?}
+        puts "You win!!!"
+      end
+    elsif @menu.user_decision == 'q'
     end
+    start
   end
 end
