@@ -11,7 +11,7 @@ class Game
 
 
   def start
-    @menu
+    @menu.start
     if @menu.user_decision == "p"
       @setup.place_computer_ships
       @setup.place_player_ships
@@ -39,12 +39,12 @@ class Game
         puts ""
 
         loop do
-          puts "Enter Coordinate for your shot!:"
+          puts "Enter coordinate for your shot!:"
           player_shot = gets.chomp.upcase
           if !@setup.computer_board.valid_coordinate?(player_shot)
             puts "INVALID PLACEMENT!".red
           elsif all_player_shots.any?{|shot| shot == player_shot}
-            puts "You've already fired upon this cell."
+            puts "You've already fired upon this cell.".yellow
           end
 
           break if @setup.computer_board.valid_coordinate?(player_shot) &&
@@ -134,15 +134,22 @@ class Game
         break if player_ships.all? {|ship| ship.sunk?} ||
           computer_ships.all? {|ship| ship.sunk?}
       end
-      if player_ships.all? {|ship| ship.sunk?}
-        puts "You lose, better luck next time!".yellow
+      if player_ships.all? {|ship| ship.sunk?} &&
+        computer_ships.all? {|ship| ship.sunk?}
+        puts "---------".magenta
+        puts "You tied!".green
+        puts "---------".magenta
       elsif computer_ships.all? {|ship| ship.sunk?}
         puts "**********".bold.light_red
-        puts "You WIN!!!".bold.underline.light_white
+        puts "You WIN!!!".bold.light_white
         puts "**********".bold.light_blue
+      elsif player_ships.all? {|ship| ship.sunk?}
+        puts "################################".bold.light_red
+        puts "You lose, better luck next time!".yellow
+        puts "################################".bold.light_red
       end
+      start()
     elsif @menu.user_decision == 'q'
     end
-    start
   end
 end

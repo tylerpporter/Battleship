@@ -50,14 +50,14 @@ attr_reader :cells
   end
 
   def place(ship, coordinate)
-    return "Invalid coordinate" if !valid_placement?(ship, coordinate)
+    return "Invalid coordinate".red if !valid_placement?(ship, coordinate)
 
     coordinate.each {|key| @cells[key].place_ship(ship)}
   end
 
   def render(ship = false)
-    columns = ["1", "2", "3", "4"]
-    rows = ["A ", "B ", "C ", "D "]
+    columns = ["1".light_white, "2".light_white, "3".light_white, "4".light_white]
+    rows = ["A ".light_white, "B ".light_white, "C ".light_white, "D "]
 
     columns.unshift(" ") unless columns[0] == " "
     string_columns = columns.join(" ") + " \n"

@@ -48,7 +48,8 @@ attr_reader :computer_board,
     cruiser = nil
     loop do
       puts "Enter the squares for the Cruiser (3 spaces, example: A1 A2 A3):".bold
-      player_coordinates = gets.chomp.upcase.split(' ')
+      user_input = gets.chomp.gsub(/[^a-zA-Z1-9]/, " ")
+      player_coordinates = user_input.upcase.split(" ")
       cruiser = @player_ships[1]
       break if @player_board.valid_placement?(cruiser, player_coordinates)
     end
@@ -56,7 +57,8 @@ attr_reader :computer_board,
     submarine = nil
     loop do
       puts "Enter the squares for the Submarine ( 2 spaces, example: B1 C1 ):".bold
-      player_coordinates = gets.chomp.upcase.split(' ')
+      user_input = gets.chomp.gsub(/[^a-zA-Z1-9]/, " ")
+      player_coordinates = user_input.upcase.split(" ")
       submarine = @player_ships[0]
       break if @player_board.valid_placement?(submarine, player_coordinates)
     end
