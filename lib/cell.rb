@@ -16,7 +16,7 @@ class Cell
   end
 
   def fire_upon
-    return "Already fired upon this cell!" if fired_upon?
+    return "Already fired upon this cell!".red if fired_upon?
     @fired_upon = true
     if @ship != nil
       @ship.hit
@@ -28,14 +28,14 @@ class Cell
   end
 
   def render(reveal_ship = false)
-    return "." if !fired_upon? && !reveal_ship
-    return "." if !fired_upon? && empty?
-    return "M" if empty? && fired_upon?
-    return "S" if reveal_ship && !empty? && !fired_upon?
+    return ".".light_white if !fired_upon? && !reveal_ship
+    return ".".light_white if !fired_upon? && empty?
+    return "M".cyan if empty? && fired_upon?
+    return "S".green if reveal_ship && !empty? && !fired_upon?
     if !empty? && !@ship.sunk? && fired_upon?
-      "H"
+      "H".yellow
     elsif !empty? && @ship.sunk? && fired_upon?
-      "X"
+      "X".red
     end
   end
 
