@@ -5,13 +5,13 @@ require './lib/game.rb'
 class GameTest < Minitest::Test
 
 def setup
-  @new_game = Game.new
+@new_game = Game.new
 
 end
 
-  def test_it_exists
+def test_it_exists
 
-    assert_instance_of Game, @new_game
-  end
+assert_instance_of Game, @new_game
+end
 
 end
