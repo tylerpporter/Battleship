@@ -8,8 +8,7 @@ attr_reader :computer_board,
             :computer_ships,
             :player_ships
 
-  def initialize(user_decision)
-    if user_decision == "p"
+  def initialize
       @computer_board = Board.new
       @player_board = Board.new
       computer_ship1 = Ship.new("Submarine", 2)
@@ -18,7 +17,6 @@ attr_reader :computer_board,
       player_ship2 = Ship.new("Cruiser", 3)
       @computer_ships = [computer_ship1, computer_ship2]
       @player_ships = [player_ship1, player_ship2]
-    end
   end
 
   def place_computer_ships
@@ -36,18 +34,20 @@ attr_reader :computer_board,
   end
 
   def place_player_ships
+    puts ""
+    puts "=".magenta * 30
     puts "I have laid out my ships on the grid."
     puts "-" * 30
     puts "You now need to lay out your two ships."
     puts "-" * 30
     puts "The Cruiser is three units long and the Submarine is two units long."
-    puts "=" * 30
+    puts "=".magenta * 30
     puts @player_board.render(true)
-    puts "=" * 30
+    puts "=".magenta * 30
     player_coordinates = nil
     cruiser = nil
     loop do
-      puts "Enter the squares for the Cruiser (3 spaces, example: A1 A2 A3):"
+      puts "Enter the squares for the Cruiser (3 spaces, example: A1 A2 A3):".bold
       player_coordinates = gets.chomp.upcase.split(' ')
       cruiser = @player_ships[1]
       break if @player_board.valid_placement?(cruiser, player_coordinates)
@@ -55,7 +55,7 @@ attr_reader :computer_board,
     @player_board.place(cruiser, player_coordinates)
     submarine = nil
     loop do
-      puts "Enter the squares for the Submarine (2 spaces, example: B1 C1):"
+      puts "Enter the squares for the Submarine ( 2 spaces, example: B1 C1 ):".bold
       player_coordinates = gets.chomp.upcase.split(' ')
       submarine = @player_ships[0]
       break if @player_board.valid_placement?(submarine, player_coordinates)
