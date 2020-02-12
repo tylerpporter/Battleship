@@ -11,7 +11,7 @@ class Game
 
 
   def start
-    @menu
+    @menu.start
     if @menu.user_decision == "p"
       @setup.place_computer_ships
       @setup.place_player_ships
