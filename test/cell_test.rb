@@ -28,6 +28,7 @@ class CellTest < Minitest::Test
     @cell.place_ship(@ship)
 
     assert_equal "Cruiser", @cell.ship.name
+    assert_equal false, @cell.empty?
   end
 
   def test_it_knows_if_its_been_fired_upon

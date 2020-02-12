@@ -78,8 +78,14 @@ class BoardTest < Minitest::Test
     @board.cells["A1"].fire_upon
     rendered2 = "  1 2 3 4 \nA H . . . \nB . . . . \nC . . . . \nD . . . . \n"
     rendered3 = "  1 2 3 4 \nA H S S . \nB . . . . \nC . . . . \nD . . . . \n"
+
     assert_equal rendered2, @board.render
     assert_equal rendered3, @board.render(true)
+
+    @board.cells["B1"].fire_upon
+    rendered4 = "  1 2 3 4 \nA H . . . \nB M . . . \nC . . . . \nD . . . . \n"
+    
+    assert_equal rendered4, @board.render
   end
 
   def test_it_can_render_an_accurate_board_with_a_sunk_ship
