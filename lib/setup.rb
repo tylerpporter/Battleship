@@ -35,19 +35,19 @@ attr_reader :computer_board,
 
   def place_player_ships
     puts ""
-    puts "=".magenta * 30
+    puts "=" * 30
     puts "I have laid out my ships on the grid."
     puts "-" * 30
     puts "You now need to lay out your two ships."
     puts "-" * 30
     puts "The Cruiser is three units long and the Submarine is two units long."
-    puts "=".magenta * 30
+    puts "=" * 30
     puts @player_board.render(true)
-    puts "=".magenta * 30
+    puts "=" * 30
     player_coordinates = nil
     cruiser = nil
     loop do
-      puts "Enter the squares for the Cruiser (3 spaces, example: A1 A2 A3):".bold
+      puts "Enter the squares for the Cruiser (3 spaces, example: A1 A2 A3):"
       user_input = gets.chomp.gsub(/[^a-zA-Z1-9]/, " ")
       player_coordinates = user_input.upcase.split(" ")
       cruiser = @player_ships[1]
@@ -56,7 +56,7 @@ attr_reader :computer_board,
     @player_board.place(cruiser, player_coordinates)
     submarine = nil
     loop do
-      puts "Enter the squares for the Submarine ( 2 spaces, example: B1 C1 ):".bold
+      puts "Enter the squares for the Submarine ( 2 spaces, example: B1 C1 ):"
       user_input = gets.chomp.gsub(/[^a-zA-Z1-9]/, " ")
       player_coordinates = user_input.upcase.split(" ")
       submarine = @player_ships[0]
