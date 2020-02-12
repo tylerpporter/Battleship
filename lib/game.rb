@@ -1,4 +1,4 @@
-require './lib/main_menu.rb'
+require './lib/menu.rb'
 require './lib/setup.rb'
 require 'colorize'
 
@@ -105,7 +105,7 @@ class Game
             print "\r#{ ' ' * msg.size }"
             sleep 0.3
           end
-          puts "Computer's shot #{computer_shot} was a Miss!".green
+          puts "Computer's shot on #{computer_shot} was a Miss!".green
 
         elsif !@setup.player_board.cells[computer_shot].ship.nil? &&
           !@setup.player_board.cells[computer_shot].ship.sunk?
@@ -134,15 +134,22 @@ class Game
         break if player_ships.all? {|ship| ship.sunk?} ||
           computer_ships.all? {|ship| ship.sunk?}
       end
-      if player_ships.all? {|ship| ship.sunk?}
-        puts "You lose, better luck next time!".yellow
+      if player_ships.all? {|ship| ship.sunk?} &&
+        computer_ships.all? {|ship| ship.sunk?}
+        puts "-" * 30
+        puts "You tied."
+        puts "-" * 30
+      elsif player_ships.all? {|ship| ship.sunk?}
+        puts "-" * 30
+        puts "You lose, better luck next time!"
+        puts "-" * 30
       elsif computer_ships.all? {|ship| ship.sunk?}
         puts "**********".bold.light_red
         puts "You WIN!!!".bold.underline.light_white
         puts "**********".bold.light_blue
       end
+      start()
     elsif @menu.user_decision == 'q'
     end
-    start
   end
 end

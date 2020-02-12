@@ -1,4 +1,4 @@
-require './lib/main_menu.rb'
+require './lib/menu.rb'
 require './lib/board.rb'
 require './lib/ship.rb'
 

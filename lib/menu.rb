@@ -14,6 +14,7 @@ class Menu
     msg10 = "play or".blue
     msg11 = "q".bold.blue
     msg12 = "to quit.".blue
+  puts ""
   puts "#{msg1} #{msg2} #{msg3}"
   puts "#{msg4}#{msg5}#{msg6}"
   puts "#{msg7} #{msg8} #{msg9} #{msg10} #{msg11} #{msg12}"

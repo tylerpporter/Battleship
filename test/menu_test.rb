@@ -1,5 +1,5 @@
 require_relative 'test_helper.rb'
-require './lib/main_menu.rb'
+require './lib/menu.rb'
 require 'colorize'
 
 class MenuTest < Minitest::Test
