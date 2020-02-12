@@ -28,6 +28,7 @@ class CellTest < Minitest::Test
     @cell.place_ship(@ship)
 
     assert_equal "Cruiser", @cell.ship.name
+    assert_equal false, @cell.empty?
   end
 
   def test_it_knows_if_its_been_fired_upon
@@ -52,25 +53,25 @@ class CellTest < Minitest::Test
     @cell.fire_upon
 
     assert_equal 2, @cell.ship.health
-    assert_equal "Already fired upon this cell!", @cell.fire_upon
+    assert_equal "Already fired upon this cell!".red, @cell.fire_upon
   end
 
   def test_it_returns_dot_if_not_fired_upon
 
     assert @cell.empty?
-    assert_equal ".", @cell.render
+    assert_equal ".".light_white, @cell.render
   end
 
   def test_it_returns_M_if_fired_upon_without_a_ship
     @cell.fire_upon
 
-    assert_equal "M", @cell.render
+    assert_equal "M".cyan, @cell.render
   end
 
   def test_it_can_reveal_a_ship
     @cell.place_ship(@ship)
 
-    assert_equal "S", @cell.render(true)
+    assert_equal "S".green, @cell.render(true)
   end
 
   def test_it_returns_H_if_fired_upon_and_ship_is_not_sunk
@@ -79,7 +80,7 @@ class CellTest < Minitest::Test
 
     assert @cell.fired_upon?
     assert_equal 2, @cell.ship.health
-    assert_equal "H", @cell.render
+    assert_equal "H".yellow, @cell.render
   end
 
   def test_it_returns_X_if_fired_upon_and_ship_is_sunk
@@ -93,7 +94,7 @@ class CellTest < Minitest::Test
     @cell3.fire_upon
 
     assert @cell.ship.sunk?
-    assert_equal "X", @cell.render
+    assert_equal "X".red, @cell.render
   end
 
 end
